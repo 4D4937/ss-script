@@ -3,3 +3,7 @@
 
 Anti-ddos.sh
 基于iptables进行ddos防护
+
+update-python2.7.12
+
+wget https://raw.githubusercontent.com/4D4937/One-click-script/master/update-python2.7.12.sh && bash update-python2.7.12.sh
