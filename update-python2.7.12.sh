@@ -25,9 +25,8 @@ mv /usr/bin/python /usr/bin/python2.6.6
 ln -s /usr/local/python2.7.12/bin/python2.7 /usr/bin/python
 
 sed -i '1s/python/python2.6/g' /usr/bin/yum
-yum install git
-yum install python-setuptools && easy_install pip
-pip install cymysql
+wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py
+python get-pip.py
 if [ $? -eq 0 ];then
      echo "pip升级完成"
 else
