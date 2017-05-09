@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#°²×°gitµÈ
+#Install pip&git
 yum install python-setuptools && easy_install pip
 yum install git
-#°²×° libsodium
+#Install libsodium
 yum -y groupinstall "Development Tools"
 download_files(){
     # Download libsodium file
@@ -36,7 +36,7 @@ install(){
         echo "Failed to clone Shadowsocks file!"
         exit 1
     fi
-#°²×°ÒÀÀµ
+#Install devel
 
     cd shadowsocks
     if check_sys packageManager yum; then
@@ -44,11 +44,11 @@ install(){
         yum -y install libffi-devel
         yum -y install openssl-devel
 	    pip install -r requirements.txt
-    fi
+	fi
 
 #config
         cp apiconfig.py userapiconfig.py
-        cp config.json user-config.json
+		cp config.json user-config.json
     
 
 	
