@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#°²×°gitµÈ
+#Â°Â²Ã—Â°gitÂµÃˆ
 yum install python-setuptools && easy_install pip
 yum install git
-#°²×° libsodium
+#Â°Â²Ã—Â° libsodium
 yum -y groupinstall "Development Tools"
 download_files(){
     # Download libsodium file
@@ -36,8 +36,7 @@ install(){
         echo "Failed to clone Shadowsocks file!"
         exit 1
     fi
-}
-#°²×°ÒÀÀµ
+#Â°Â²Ã—Â°Ã’Ã€Ã€Âµ
 
     cd shadowsocks
     if check_sys packageManager yum; then
