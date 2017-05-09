@@ -44,12 +44,11 @@ install(){
         yum -y install libffi-devel
         yum -y install openssl-devel
 	    pip install -r requirements.txt
-	fi
-}
+    fi
 
 #config
         cp apiconfig.py userapiconfig.py
-		cp config.json user-config.json
+        cp config.json user-config.json
     
 
 	
