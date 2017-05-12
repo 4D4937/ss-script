@@ -8,7 +8,6 @@ echo     #	Version: 1.1.0
 echo     #	Author: T3ns0r
 echo     #=================================================
 echo
-echo
 
 #Check Root
 [ $(id -u) != "0" ] && { echo "Error: You must be root to run this script"; exit 1; }
