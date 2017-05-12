@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 clear
 echo
-echo "#############################################################"
-echo "# One click Install ShadowsocksR-Python                     #"
-echo "# Github: https://github.com/4D4937                         #"
-echo "# Author: T3ns0r                                            #"
-echo "#############################################################"
+echo     #=================================================
+echo     #	System Required: CentOS 6+
+echo     #	Description: One click Install ShadowsocksR-Python
+echo     #	Version: 1.1.0
+echo     #	Author: T3ns0r
+echo     #=================================================
 echo
+echo     =============Working for LIBERTY-SS====================
 
 #Check Root
 [ $(id -u) != "0" ] && { echo "Error: You must be root to run this script"; exit 1; }
@@ -56,7 +58,7 @@ install_soft_for_each(){
 install_soft_for_each
 #clone shadowsocks
 cd /root
-git clone -b manyuser https://github.com/glzjin/shadowsocks.git
+git clone -b manyuser https://github.com/glzjin/shadowsocks.git "/root/shadowsocks"
 #install devel
 cd /root/shadowsocks
 yum -y install python-devel
