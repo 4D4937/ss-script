@@ -1,3 +1,5 @@
+# One-click script
+
 # Anti-ddos.sh
 基于iptables进行ddos防护
 
