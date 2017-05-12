@@ -56,7 +56,7 @@ install_soft_for_each(){
 install_soft_for_each
 #clone shadowsocks
 cd /root
-git clone -b manyuser https://github.com/glzjin/shadowsocks.git "/root/shadowsocks"
+git clone -b manyuser https://github.com/glzjin/shadowsocks.git
 #install devel
 cd /root/shadowsocks
 yum -y install python-devel
