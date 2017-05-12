@@ -10,9 +10,7 @@ echo "#############################################################"
 echo
 #Check Root
 [ $(id -u) != "0" ] && { echo "Error: You must be root to run this script"; exit 1; }
-read -p "Please input your domain(like:https://ss.feiyang.li or http://114.114.114.114): " Userdomain
-read -p "Please input your mukey(like:mupass): " Usermukey
-read -p "Please input your Node_ID(like:1): " UserNODE_ID
+
 #check OS version
 check_sys(){
 	if [[ -f /etc/redhat-release ]]; then
@@ -57,23 +55,3 @@ install_soft_for_each(){
 	ldconfig
 	fi
 }
-
-install_soft_for_each
-echo "Let's setup your ssnode/root"
-git clone https://github.com/mmmwhy/shadowsocks-py-mu.git "/root/shadowsocks-py-mu"
-#modify Config.py
-echo -e "modify Config.py...\n"
-Userdomain=${Userdomain:-"https://ss.feiyang.li"}
-sed -i "s#http://domain#${Userdomain}#" /root/shadowsocks-py-mu/shadowsocks/config.py
-Usermukey=${Usermukey:-"mupass"}
-sed -i "s#mupass#${Usermukey}#" /root/shadowsocks-py-mu/shadowsocks/config.py
-UserNODE_ID=${UserNODE_ID:-"1"}
-sed -i "s#'1'#'${UserNODE_ID}'#" /root/shadowsocks-py-mu/shadowsocks/config.py
-echo_supervisord_conf > /etc/supervisord.conf
-sed -i '$a [program:ss-manyuser]\ncommand = python /root/shadowsocks-py-mu/shadowsocks/servers.py\nuser = root\nautostart = true\nautorestart = true' /etc/supervisord.conf
-supervisord
-iptables -I INPUT -p tcp -m tcp --dport 104 -j ACCEPT
-iptables -I INPUT -p tcp -m tcp --dport 1024: -j ACCEPT
-iptables-save
-sleep 4
-cat shadowsocks.log
