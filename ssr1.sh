@@ -28,26 +28,26 @@ check_sys(){
 	bit=`uname -m`
 }
 install_soft_for_each(){
-	check_sys
-	if [[ ${release} = "centos" ]]; then
-		yum install git -y
-		yum install python-setuptools && easy_install pip -y
-		yum -y groupinstall "Development Tools" -y
-		wget https://github.com/jedisct1/libsodium/releases/download/1.0.10/libsodium-1.0.10.tar.gz
-		tar xf libsodium-1.0.11.tar.gz && cd libsodium-1.0.10
-		./configure && make -j2 && make install
-		echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
-		ldconfig
-	else
-	apt-get update -y
-	apt-get install supervisor -y
-	apt-get install git -y
-	apt-get install build-essential -y
-	wget https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/libsodium-1.0.11.tar.gz
-	tar xf libsodium-1.0.11.tar.gz && cd libsodium-1.0.11
-	./configure && make -j2 && make install
-	ldconfig
-	fi
+	    check_sys
+	    if [[ ${release} = "centos" ]]; then
+		        yum install git -y
+		        yum install python-setuptools && easy_install pip -y
+		        yum -y groupinstall "Development Tools" -y
+		        wget https://github.com/jedisct1/libsodium/releases/download/1.0.10/libsodium-1.0.10.tar.gz
+		        tar xf libsodium-1.0.11.tar.gz && cd libsodium-1.0.10
+		        ./configure && make -j2 && make install
+		        echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
+		        ldconfig
+	    else
+	    apt-get update -y
+	    apt-get install supervisor -y
+	    apt-get install git -y
+	    apt-get install build-essential -y
+	    wget https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/libsodium-1.0.11.tar.gz
+	    tar xf libsodium-1.0.11.tar.gz && cd libsodium-1.0.11
+	    ./configure && make -j2 && make install
+	    ldconfig
+	    fi
 }
 
 #clone shadowsocks
