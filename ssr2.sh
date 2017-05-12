@@ -10,7 +10,9 @@ echo "#############################################################"
 echo
 #Check Root
 [ $(id -u) != "0" ] && { echo "Error: You must be root to run this script"; exit 1; }
-
+read -p "Please input your domain(like:https://ss.feiyang.li or http://114.114.114.114): " Userdomain
+read -p "Please input your mukey(like:mupass): " Usermukey
+read -p "Please input your Node_ID(like:1): " UserNODE_ID
 #check OS version
 check_sys(){
 	if [[ -f /etc/redhat-release ]]; then
