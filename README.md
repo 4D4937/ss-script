@@ -1,6 +1,6 @@
 # One-click script
 
-# Anti-ddos.sh
+### Anti-ddos.sh
 基于iptables进行ddos防护
 
 ### 升级python2.7:
