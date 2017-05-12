@@ -8,6 +8,9 @@ echo "# Author: T3ns0r                                            #"
 echo "#############################################################"
 echo
 
+#Check Root
+[ $(id -u) != "0" ] && { echo "Error: You must be root to run this script"; exit 1; }
+
 #check OS version
 check_sys(){
 	if [[ -f /etc/redhat-release ]]; then
@@ -50,6 +53,7 @@ install_soft_for_each(){
 	    fi
 }
 
+install_soft_for_each
 #clone shadowsocks
 cd /root/shadowsocks
 git clone -b manyuser https://github.com/glzjin/shadowsocks.git "/root/shadowsocks"
