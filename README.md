@@ -10,7 +10,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/code/mas
 wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/code/master/update-python2.7.12.sh && bash update-python2.7.12.sh
 ```
 
-### ssr-python多用户板脚本:
+### ssr-python多用户脚本:
 ``` bash     
 wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/code/master/SSR-Python.sh && bash SSR-Python.sh
 ```
