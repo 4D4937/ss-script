@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 clear
 echo
-echo     #=================================================
-echo     #	System Required: CentOS 6+
-echo     #	Description: One click Install ShadowsocksR-Python
-echo     #	Version: 1.1.0
-echo     #	Author: T3ns0r
-echo     #=================================================
+echo #=================================================
+echo #	System Required: CentOS 6+
+echo #	Description: One click Install ShadowsocksR-Python
+echo #	Version: 1.1.0
+echo #	Author: T3ns0r
+echo #=================================================
 echo
 
 #Check Root
