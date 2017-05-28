@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 clear
-echo
-echo "########################################################"
-echo "# System Required: CentOS 6+                           #"
-echo "# Description: One click Install ShadowsocksR-Python   #"
-echo "# Version: 1.1.0                                       #"
-echo "# Author: T3ns0r                                       #"
-echo "########################################################"
-echo
+########################################################
+# System Required: CentOS 6+                           #
+# Description: One click Install ShadowsocksR-Python   #
+# Version: 1.1.0                                       #
+# Author: T3ns0r                                       #
+########################################################
+
 #Check Root
 [ $(id -u) != "0" ] && { echo "Error: You must be root to run this script"; exit 1; }
 
