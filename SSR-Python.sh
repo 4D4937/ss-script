@@ -66,8 +66,8 @@ cp apiconfig.py userapiconfig.py
 cp config.json user-config.json
 
 #iptables
-iptables -I INPUT -p tcp -m tcp --dport 104 -j ACCEPT
-iptables -I INPUT -p tcp -m tcp --dport 1024: -j ACCEPT
+iptables -I INPUT -p tcp -m tcp --dport 1 -j ACCEPT
+iptables -I INPUT -p tcp -m tcp --dport 65535: -j ACCEPT
 iptables-save
 
 echo enjoy it!
