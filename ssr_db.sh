@@ -45,6 +45,9 @@ Save_iptables(){
 	fi
 }
 
+# serverspeeder
+wget -N --no-check-certificate https://github.com/91yun/serverspeeder/raw/master/serverspeeder.sh && bash serverspeeder.sh
+
 # config
 read -p "节点ID:" id_name
 read -p "数据库地址:" sql_host
