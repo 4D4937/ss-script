@@ -17,5 +17,5 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/code/mas
 
 ### ssr-python多用户脚本:
 ``` bash     
-wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/code/master/SSR-Python.sh && bash SSR-Python.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/code/master/SSR-Python.sh && bash ssr_db.sh
 ```
