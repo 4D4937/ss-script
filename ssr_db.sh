@@ -70,7 +70,7 @@ install_soft_for_each(){
 	    if [[ ${release} = "centos" ]]; then
 	                yum update
 		        yum install git -y
-		        yum install python-setuptools && easy_install pip -y
+		        yum install python-setuptools && easy_install pip
 		        yum -y groupinstall "Development Tools" -y
 		        wget https://github.com/jedisct1/libsodium/releases/download/1.0.10/libsodium-1.0.10.tar.gz
 		        tar xf libsodium-1.0.10.tar.gz && cd libsodium-1.0.10
