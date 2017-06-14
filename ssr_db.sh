@@ -50,6 +50,7 @@ wget -N --no-check-certificate https://github.com/91yun/serverspeeder/raw/master
 
 # config
 read -p "节点ID:" id_name
+read -p "模式选择(glzjinmod, modwebapi):" api_mode
 read -p "数据库地址:" sql_host
 read -p "数据库:" sql_db
 read -p "用户名:" sql_user
@@ -103,6 +104,7 @@ cp apiconfig.py userapiconfig.py
 cp config.json user-config.json
 
 sed -i "2s/1/${id_name}/g" ${config_file}
+sed -i "15s/modwebapi/${api_mode}/g" ${config_file}
 sed -i "24s/127.0.0.1/${sql_host}/g" ${config_file}
 sed -i "26s/ss/${sql_user}/g" ${config_file}
 sed -i "27s/ss/${sql_pw}/g" ${config_file}
