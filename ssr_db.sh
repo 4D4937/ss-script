@@ -71,7 +71,6 @@ View_User(){
 install_soft_for_each(){
 	    check_sys
 	    if [[ ${release} = "centos" ]]; then
-	                yum update
 		        yum install git -y
 		        yum install python-setuptools && easy_install pip
 		        yum -y groupinstall "Development Tools" -y
