@@ -8,6 +8,8 @@ clear
 ########################################################
 
 config_file="/root/shadowsocks/userapiconfig.py"
+1="glzjinmod"
+2="modwebapi"
 
 #Check Root
 [ $(id -u) != "0" ] && { echo "Error: You must be root to run this script"; exit 1; }
@@ -50,7 +52,7 @@ wget -N --no-check-certificate https://github.com/91yun/serverspeeder/raw/master
 
 # config
 read -p "节点ID:" id_name
-read -p "模式选择(glzjinmod, modwebapi):" api_mode
+read -p "模式选择(1.glzjinmod, 2.modwebapi):" api_mode
 read -p "数据库地址:" sql_host
 read -p "数据库:" sql_db
 read -p "用户名:" sql_user
