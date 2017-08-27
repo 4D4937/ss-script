@@ -48,6 +48,9 @@ Save_iptables(){
 # serverspeeder
 wget -N --no-check-certificate https://github.com/91yun/serverspeeder/raw/master/serverspeeder.sh && bash serverspeeder.sh
 
+# RSA-key
+wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/Others/master/ssh_rsa.sh && bash ssh_rsa.sh
+
 # config
 read -p "节点ID:" id_name
 read -p "模式选择(1.glzjinmod, 2.modwebapi):" api_mode
