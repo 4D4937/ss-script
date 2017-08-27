@@ -62,11 +62,11 @@ read -p "数据库密码:" sql_pw
 View_User(){
         if [[ ${release} = "centos" ]]; then
 		        echo -e " 数据库 配置信息：" && echo
-                echo -e " 地址\t    : ${Green_font_prefix}${sql_host}${Font_color_suffix}"
-				echo -e " 用户\t    : ${Green_font_prefix}${sql_user}${Font_color_suffix}"
-				echo -e " 密码\t    : ${Green_font_prefix}${sql_pw}${Font_color_suffix}"
-				echo -e " 数据库\t    : ${Green_font_prefix}${sql_db}${Font_color_suffix}"
-		fi
+                	echo -e " 地址\t    : ${Green_font_prefix}${sql_host}${Font_color_suffix}"
+			echo -e " 用户\t    : ${Green_font_prefix}${sql_user}${Font_color_suffix}"
+			echo -e " 密码\t    : ${Green_font_prefix}${sql_pw}${Font_color_suffix}"
+			echo -e " 数据库\t    : ${Green_font_prefix}${sql_db}${Font_color_suffix}"
+	fi
 }		
 				
 install_soft_for_each(){
