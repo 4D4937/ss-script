@@ -111,7 +111,7 @@ sed -i "24s/127.0.0.1/${sql_host}/g" ${config_file}
 sed -i "26s/ss/${sql_user}/g" ${config_file}
 sed -i "27s/ss/${sql_pw}/g" ${config_file}
 sed -i "28s/shadowsocks/${sql_db}/g" ${config_file}
-
+iptables -F
 
 
 echo enjoy it!
