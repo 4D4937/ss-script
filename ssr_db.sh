@@ -112,6 +112,6 @@ sed -i "26s/ss/${sql_user}/g" ${config_file}
 sed -i "27s/ss/${sql_pw}/g" ${config_file}
 sed -i "28s/shadowsocks/${sql_db}/g" ${config_file}
 iptables -F
-
+/root/shadowsocks/logrun.sh
 
 echo enjoy it!
