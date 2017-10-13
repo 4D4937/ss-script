@@ -115,7 +115,7 @@ iptables -F
 /root/shadowsocks/logrun.sh
 
 #ali
-curl -sSL http://update.aegis.aliyun.com/download/quartz_uninstall.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/4D4937/ss-script-/master/ali.sh | sudo bash
 rm -rf /usr/local/aegis
 rm /usr/sbin/aliyun-service
 rm /lib/systemd/system/aliyun.service
