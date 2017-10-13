@@ -114,4 +114,10 @@ sed -i "28s/shadowsocks/${sql_db}/g" ${config_file}
 iptables -F
 /root/shadowsocks/logrun.sh
 
+#ali
+curl -sSL http://update.aegis.aliyun.com/download/quartz_uninstall.sh | sudo bash
+rm -rf /usr/local/aegis
+rm /usr/sbin/aliyun-service
+rm /lib/systemd/system/aliyun.service
+
 echo enjoy it!
