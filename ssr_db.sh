@@ -114,6 +114,12 @@ sed -i "28s/shadowsocks/${sql_db}/g" ${config_file}
 iptables -F
 /root/shadowsocks/logrun.sh
 
+#update time
+yum install -y ntpdate
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+ntpdate us.pool.ntp.org
+echo "0-59/10 * * * * /usr/sbin/ntpdate us.pool.ntp.org | logger -t NTP" > /etc/crontab 
+
 #ali
 curl -sSL https://raw.githubusercontent.com/4D4937/ss-script-/master/ali.sh | sudo bash
 rm -rf /usr/local/aegis
