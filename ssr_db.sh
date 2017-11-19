@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 clear
-########################################################
-# System Required: CentOS 6+                           #
-# Description: One click Install ShadowsocksR-Python   #
-# Version: 1.2                                         #
-# Author: T3ns0r                                       #
-########################################################
 
 config_file="/root/shadowsocks/userapiconfig.py"
 
@@ -30,19 +24,6 @@ check_sys(){
 		release="centos"
     fi
 	bit=`uname -m`
-}
-
-Add_iptables(){
-	iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 1:65535 -j ACCEPT
-	iptables -I INPUT -m state --state NEW -m udp -p udp --dport 1:65535 -j ACCEPT
-}
-
-Save_iptables(){
-	if [[ ${release} == "centos" ]]; then
-		service iptables save
-	else
-		iptables-save > /etc/iptables.up.rules
-	fi
 }
 
 # serverspeeder
