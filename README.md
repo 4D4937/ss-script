@@ -15,3 +15,8 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/code/mas
 ``` bash     
 wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/code/master/ssr_db.sh && bash ssr_db.sh
 ```
+
+### sql backup:
+``` bash   
+wget -N --no-check-certificate https://github.com/4D4937/ss-script-/blob/master/sql_backup.sh && bash sql_backup.sh
+```
