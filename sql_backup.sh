@@ -17,3 +17,4 @@ tar -zcvf ./backup$(date +"%Y%m%d").tar.gz ./backup$(date +"%Y%m%d")
 
 rm -rf /home/backup/backup$(date -d -7day +"%Y%m%d")
 rm -rf /home/backup/backup$(date -d -7day +"%Y%m%d").tar.gz
+echo "30  1  *  *  * root bash /root/backup.sh" >> /etc/crontab
