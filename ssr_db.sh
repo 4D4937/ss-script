@@ -34,21 +34,10 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/Others/m
 
 # config
 read -p "节点ID:" id_name
-read -p "模式选择(1.glzjinmod, 2.modwebapi):" api_mode
-read -p "数据库地址:" sql_host
-read -p "数据库:" sql_db
-read -p "用户名:" sql_user
-read -p "数据库密码:" sql_pw
+read -p "网站地址:" web_link
+read -p "muKey:" mu_key
 
-View_User(){
-        if [[ ${release} = "centos" ]]; then
-		        echo -e " 数据库 配置信息：" && echo
-                	echo -e " 地址\t    : ${Green_font_prefix}${sql_host}${Font_color_suffix}"
-			echo -e " 用户\t    : ${Green_font_prefix}${sql_user}${Font_color_suffix}"
-			echo -e " 密码\t    : ${Green_font_prefix}${sql_pw}${Font_color_suffix}"
-			echo -e " 数据库\t    : ${Green_font_prefix}${sql_db}${Font_color_suffix}"
-	fi
-}		
+	
 				
 install_soft_for_each(){
 	    check_sys
@@ -79,8 +68,9 @@ cd /root
 git clone -b manyuser https://github.com/glzjin/shadowsocks.git "/root/shadowsocks"
 #install devel
 cd /root/shadowsocks
+yum -y install libssl-dev
 yum -y install epel-release
-yum install python-pip
+yum -y install python-pip
 yum -y install python-devel
 yum -y install libffi-devel
 yum -y install openssl-devel
@@ -89,11 +79,8 @@ cp apiconfig.py userapiconfig.py
 cp config.json user-config.json
 
 sed -i "2s/1/${id_name}/g" ${config_file}
-sed -i "15s/modwebapi/${api_mode}/g" ${config_file}
-sed -i "24s/127.0.0.1/${sql_host}/g" ${config_file}
-sed -i "26s/ss/${sql_user}/g" ${config_file}
-sed -i "27s/ss/${sql_pw}/g" ${config_file}
-sed -i "28s/shadowsocks/${sql_db}/g" ${config_file}
+sed -i "17s/zhaoj.in/${web_link}/g" ${config_file}
+sed -i "18s/glzjin/${mu_key}/g" ${config_file}
 iptables -F
 /root/shadowsocks/logrun.sh
 
