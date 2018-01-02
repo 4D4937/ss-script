@@ -9,6 +9,7 @@ dbport=3306
 #定义备份数据库时使用的用户名和密码 
 dbuser="sspanel" dbpasswd="pass"   
 #数据库备份的路径 
+mkdir /home/backup
 backuppath=/home/backup
  
 #数据库备份日志文件存储的路径 
