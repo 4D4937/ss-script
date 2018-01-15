@@ -3,6 +3,7 @@ clear
 
 config_file="/root/shadowsocks/userapiconfig.py"
 
+
 #Check Root
 [ $(id -u) != "0" ] && { echo "Error: You must be root to run this script"; exit 1; }
 
@@ -82,7 +83,8 @@ sed -i "2s/1/${id_name}/g" ${config_file}
 sed -i "17s/zhaoj.in/${web_link}/g" ${config_file}
 sed -i "18s/glzjin/${mu_key}/g" ${config_file}
 iptables -F
-/root/shadowsocks/logrun.sh
+/root/shadowsocks/run.sh
+echo "* * * * * root /root/shadowsocks/run.sh > /dev/null 2>&1" >> /etc/crontab && service crond restart
 
 #update time
 yum install -y ntpdate
