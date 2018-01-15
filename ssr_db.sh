@@ -86,12 +86,6 @@ iptables -F
 /root/shadowsocks/run.sh
 echo "* * * * * root /root/shadowsocks/run.sh > /dev/null 2>&1" >> /etc/crontab && service crond restart
 
-#update time
-yum install -y ntpdate
-cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-ntpdate us.pool.ntp.org
-echo "0-59/10 * * * * /usr/sbin/ntpdate us.pool.ntp.org | logger -t NTP" > /etc/crontab 
-
 #ali
 curl -sSL https://raw.githubusercontent.com/4D4937/ss-script-/master/ali.sh | sudo bash
 rm -rf /usr/local/aegis
