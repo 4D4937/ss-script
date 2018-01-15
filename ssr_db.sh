@@ -85,6 +85,8 @@ sed -i "18s/glzjin/${mu_key}/g" ${config_file}
 iptables -F
 /root/shadowsocks/run.sh
 echo "* * * * * root /root/shadowsocks/run.sh > /dev/null 2>&1" >> /etc/crontab && service crond restart
+service crond restart
+chkconfig –level 35 crond on
 
 #ali
 curl -sSL https://raw.githubusercontent.com/4D4937/ss-script-/master/ali.sh | sudo bash
