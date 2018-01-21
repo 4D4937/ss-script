@@ -35,6 +35,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/Others/m
 
 # config
 read -p "模式选择(1.glzjinmod, 2.modwebapi):" api_mode
+read -p "节点ID:" id_name
 read -p "数据库地址:" sql_host
 read -p "数据库:" sql_db		
 read -p "用户名:" sql_user		
