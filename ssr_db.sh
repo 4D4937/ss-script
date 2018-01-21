@@ -69,6 +69,7 @@ cd /root
 git clone -b manyuser https://github.com/glzjin/shadowsocks.git "/root/shadowsocks"
 #install devel
 cd /root/shadowsocks
+yum -y install update
 yum -y install libssl-dev
 yum -y install epel-release
 yum -y install python-pip
