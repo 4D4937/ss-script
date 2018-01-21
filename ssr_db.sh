@@ -84,8 +84,8 @@ sed -i "17s/zhaoj.in/${web_link}/g" ${config_file}
 sed -i "18s/glzjin/${mu_key}/g" ${config_file}
 iptables -F
 /root/shadowsocks/run.sh
-echo "* * * * * root /root/shadowsocks/run.sh > /dev/null 2>&1" >> /etc/crontab && service crond restart
-service crond restart
+echo "30 * * * * root /root/shadowsocks/run.sh > /dev/null 2>&1" >> /etc/crontab
+/sbin/service crond restart
 chkconfig –level 35 crond on
 
 #ali
