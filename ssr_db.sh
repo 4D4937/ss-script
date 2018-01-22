@@ -91,7 +91,6 @@ sed -i "27s/ss/${sql_pw}/g" ${config_file}
 sed -i "28s/shadowsocks/${sql_db}/g" ${config_file}
 iptables -F
 /root/shadowsocks/run.sh
-echo "30 * * * * root /root/shadowsocks/run.sh > /dev/null 2>&1" >> /etc/crontab
 /sbin/service crond restart
 chkconfig –level 35 crond on
 
