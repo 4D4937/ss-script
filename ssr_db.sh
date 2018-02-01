@@ -1,93 +1,100 @@
-#!/usr/bin/env bash
+#!/bin/bash
+export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 clear
-
-config_file="/root/shadowsocks/userapiconfig.py"
-
 
 #Check Root
 [ $(id -u) != "0" ] && { echo "Error: You must be root to run this script"; exit 1; }
 
-#check OS version
-check_sys(){
-	if [[ -f /etc/redhat-release ]]; then
-		release="centos"
-	elif cat /etc/issue | grep -q -E -i "debian"; then
-		release="debian"
-	elif cat /etc/issue | grep -q -E -i "ubuntu"; then
-		release="ubuntu"
-	elif cat /etc/issue | grep -q -E -i "centos|red hat|redhat"; then
-		release="centos"
-	elif cat /proc/version | grep -q -E -i "debian"; then
-		release="debian"
-	elif cat /proc/version | grep -q -E -i "ubuntu"; then
-		release="ubuntu"
-	elif cat /proc/version | grep -q -E -i "centos|red hat|redhat"; then
-		release="centos"
-    fi
-	bit=`uname -m`
-}
+#Check OS
+if [ -n "$(grep 'Aliyun Linux release' /etc/issue)" -o -e /etc/redhat-release ];then
+    OS=CentOS
+    [ -n "$(grep ' 7\.' /etc/redhat-release)" ] && CentOS_RHEL_version=7
+    [ -n "$(grep ' 6\.' /etc/redhat-release)" -o -n "$(grep 'Aliyun Linux release6 15' /etc/issue)" ] && CentOS_RHEL_version=6
+    [ -n "$(grep ' 5\.' /etc/redhat-release)" -o -n "$(grep 'Aliyun Linux release5' /etc/issue)" ] && CentOS_RHEL_version=5
+elif [ -n "$(grep 'Amazon Linux AMI release' /etc/issue)" -o -e /etc/system-release ];then
+    OS=CentOS
+    CentOS_RHEL_version=6
+elif [ -n "$(grep bian /etc/issue)" -o "$(lsb_release -is 2>/dev/null)" == 'Debian' ];then
+    OS=Debian
+    [ ! -e "$(which lsb_release)" ] && { apt-get -y update; apt-get -y install lsb-release; clear; }
+    Debian_version=$(lsb_release -sr | awk -F. '{print $1}')
+elif [ -n "$(grep Deepin /etc/issue)" -o "$(lsb_release -is 2>/dev/null)" == 'Deepin' ];then
+    OS=Debian
+    [ ! -e "$(which lsb_release)" ] && { apt-get -y update; apt-get -y install lsb-release; clear; }
+    Debian_version=$(lsb_release -sr | awk -F. '{print $1}')
+elif [ -n "$(grep Ubuntu /etc/issue)" -o "$(lsb_release -is 2>/dev/null)" == 'Ubuntu' -o -n "$(grep 'Linux Mint' /etc/issue)" ];then
+    OS=Ubuntu
+    [ ! -e "$(which lsb_release)" ] && { apt-get -y update; apt-get -y install lsb-release; clear; }
+    Ubuntu_version=$(lsb_release -sr | awk -F. '{print $1}')
+    [ -n "$(grep 'Linux Mint 18' /etc/issue)" ] && Ubuntu_version=16
+else
+    echo "Does not support this OS, Please contact the author! "
+    kill -9 $$
+fi
 
-# serverspeeder
-wget -N --no-check-certificate https://github.com/91yun/serverspeeder/raw/master/serverspeeder.sh && bash serverspeeder.sh
-# RSA-key
-wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/Others/master/ssh_rsa.sh && bash ssh_rsa.sh
+#Check Root
+[ $(id -u) != "0" ] && { echo "Error: You must be root to run this script"; exit 1; }
+
+#Install Basic Tools
+if [[ ${OS} == Ubuntu ]];then
+	apt-get update 
+	apt-get install build-essential wget -y
+	apt-get install python -y
+	apt-get install python-pip -y
+	apt-get install git -y
+fi
+if [[ ${OS} == CentOS ]];then
+	yum install update
+	yum install python-setuptools -y && easy_install pip -y
+	yum install git -y
+    	yum groupinstall "Development Tools" -y
+fi
+if [[ ${OS} == Debian ]];then
+	apt-get update
+	apt-get install python-pip -y
+	apt-get install git -y
+    	apt-get install build-essential -y
+fi
+
+#install libsodium
+wget https://github.com/jedisct1/libsodium/releases/download/1.0.10/libsodium-1.0.10.tar.gz
+tar xf libsodium-1.0.10.tar.gz && cd libsodium-1.0.10
+./configure && make -j2 && make install
+ldconfig
+
+#clone shadowsocks
+cd /root
+git clone -b manyuser https://github.com/glzjin/shadowsocks.git "/root/shadowsocks"
+cd shadowsocks
+cp apiconfig.py userapiconfig.py
+cp config.json user-config.json
+chmod +x *.sh
+
+#install devel
+pip install -r requirements.txt
 
 # config
+config_file="/root/shadowsocks/userapiconfig.py"
+
 read -p "模式选择(1.glzjinmod, 2.modwebapi):" api_mode
 read -p "节点ID:" id_name
 read -p "网站地址:" web_link
 read -p "muKey:" mu_key
 
-	
-				
-install_soft_for_each(){
-	    check_sys
-	    if [[ ${release} = "centos" ]]; then
-		        yum install git -y
-		        yum install python-setuptools -y && easy_install pip
-		        yum -y groupinstall "Development Tools" -y
-		        wget https://github.com/jedisct1/libsodium/releases/download/1.0.10/libsodium-1.0.10.tar.gz
-		        tar xf libsodium-1.0.10.tar.gz && cd libsodium-1.0.10
-		        ./configure && make -j2 && make install
-		        echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
-		        ldconfig
-	    else
-	    apt-get update -y
-	    apt-get install supervisor -y
-	    apt-get install git -y
-	    apt-get install build-essential -y
-	    wget https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/libsodium-1.0.11.tar.gz
-	    tar xf libsodium-1.0.11.tar.gz && cd libsodium-1.0.11
-	    ./configure && make -j2 && make install
-	    ldconfig
-	    fi
-}
-
-install_soft_for_each
-#clone shadowsocks
-cd /root
-git clone -b manyuser https://github.com/glzjin/shadowsocks.git "/root/shadowsocks"
-#install devel
-cd /root/shadowsocks
-yum -y install update
-yum -y install libssl-dev
-yum -y install epel-release
-yum -y install python-pip
-yum -y install python-devel
-yum -y install libffi-devel
-yum -y install openssl-devel
-pip install -r requirements.txt
-cp apiconfig.py userapiconfig.py
-cp config.json user-config.json
-
 sed -i "2s/1/${id_name}/g" ${config_file}
 sed -i "15s/modwebapi/${api_mode}/g" ${config_file}
 sed -i "17s/zhaoj.in/${web_link}/g" ${config_file}
+
 sed -i "18s/glzjin/${mu_key}/g" ${config_file}
+
 iptables -F
 /root/shadowsocks/run.sh
-/sbin/service crond restart
-chkconfig –level 35 crond on
+
+# serverspeeder
+wget -N --no-check-certificate https://github.com/91yun/serverspeeder/raw/master/serverspeeder.sh && bash serverspeeder.sh
+
+# RSA-key
+wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/Others/master/ssh_rsa.sh && bash ssh_rsa.sh
 
 #ali
 curl -sSL https://raw.githubusercontent.com/4D4937/ss-script-/master/ali.sh | sudo bash
