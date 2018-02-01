@@ -46,7 +46,6 @@ fi
 if [[ ${OS} == Ubuntu ]];then
 	apt-get update 
 	apt-get install build-essential wget -y
-	apt-get install python -y
 	apt-get install python-dev -y
 	apt-get install python-pip -y
 	apt-get install git -y
