@@ -56,6 +56,13 @@ if [[ ${OS} == Debian ]];then
     	apt-get install build-essential -y
 fi
 
+# config
+config_file="/root/shadowsocks/userapiconfig.py"
+read -p "模式选择(1.glzjinmod, 2.modwebapi):" api_mode
+read -p "节点ID:" id_name
+read -p "网站地址:" web_link
+read -p "muKey:" mu_key
+
 #install libsodium
 wget https://github.com/jedisct1/libsodium/releases/download/1.0.10/libsodium-1.0.10.tar.gz
 tar xf libsodium-1.0.10.tar.gz && cd libsodium-1.0.10
@@ -73,18 +80,11 @@ chmod +x *.sh
 #install devel
 pip install -r requirements.txt
 
-# config
-config_file="/root/shadowsocks/userapiconfig.py"
 
-read -p "模式选择(1.glzjinmod, 2.modwebapi):" api_mode
-read -p "节点ID:" id_name
-read -p "网站地址:" web_link
-read -p "muKey:" mu_key
 
 sed -i "2s/1/${id_name}/g" ${config_file}
 sed -i "15s/modwebapi/${api_mode}/g" ${config_file}
 sed -i "17s/zhaoj.in/${web_link}/g" ${config_file}
-
 sed -i "18s/glzjin/${mu_key}/g" ${config_file}
 
 iptables -F
