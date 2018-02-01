@@ -91,9 +91,6 @@ sed -i "18s/glzjin/${mu_key}/g" ${config_file}
 iptables -F
 /root/shadowsocks/run.sh
 
-# serverspeeder
-wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
-
 # RSA-key
 wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/Others/master/ssh_rsa.sh && bash ssh_rsa.sh
 
@@ -102,5 +99,8 @@ curl -sSL https://raw.githubusercontent.com/4D4937/ss-script-/master/ali.sh | su
 rm -rf /usr/local/aegis
 rm /usr/sbin/aliyun-service
 rm /lib/systemd/system/aliyun.service
+
+# serverspeeder
+wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
 
 echo enjoy it!
