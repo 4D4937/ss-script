@@ -5,6 +5,13 @@ clear
 #Check Root
 [ $(id -u) != "0" ] && { echo "Error: You must be root to run this script"; exit 1; }
 
+# config
+config_file="/root/shadowsocks/userapiconfig.py"
+read -p "模式选择(1.glzjinmod, 2.modwebapi):" api_mode
+read -p "节点ID:" id_name
+read -p "网站地址:" web_link
+read -p "muKey:" mu_key
+
 #Check OS
 if [ -n "$(grep 'Aliyun Linux release' /etc/issue)" -o -e /etc/redhat-release ];then
     OS=CentOS
@@ -56,13 +63,6 @@ if [[ ${OS} == Debian ]];then
     	apt-get install build-essential -y
 fi
 
-# config
-config_file="/root/shadowsocks/userapiconfig.py"
-read -p "模式选择(1.glzjinmod, 2.modwebapi):" api_mode
-read -p "节点ID:" id_name
-read -p "网站地址:" web_link
-read -p "muKey:" mu_key
-
 #install libsodium
 wget https://github.com/jedisct1/libsodium/releases/download/1.0.10/libsodium-1.0.10.tar.gz
 tar xf libsodium-1.0.10.tar.gz && cd libsodium-1.0.10
@@ -79,8 +79,6 @@ chmod +x *.sh
 
 #install devel
 pip install -r requirements.txt
-
-
 
 sed -i "2s/1/${id_name}/g" ${config_file}
 sed -i "15s/modwebapi/${api_mode}/g" ${config_file}
