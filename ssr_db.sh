@@ -66,13 +66,14 @@ if [[ ${OS} == Debian ]];then
 fi
 
 #install libsodium
-wget https://github.com/jedisct1/libsodium/releases/download/1.0.10/libsodium-1.0.10.tar.gz
+wget -N --no-check-certificate https://github.com/jedisct1/libsodium/releases/download/1.0.10/libsodium-1.0.10.tar.gz
 tar xf libsodium-1.0.10.tar.gz && cd libsodium-1.0.10
 ./configure && make -j2 && make install
 ldconfig
 
 #clone shadowsocks
 cd /root
+git config --global http.sslverify false
 git clone -b manyuser https://github.com/glzjin/shadowsocks.git "/root/shadowsocks"
 cd shadowsocks
 cp apiconfig.py userapiconfig.py
