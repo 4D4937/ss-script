@@ -39,9 +39,6 @@ else
     kill -9 $$
 fi
 
-#Check Root
-[ $(id -u) != "0" ] && { echo "Error: You must be root to run this script"; exit 1; }
-
 #Install Basic Tools
 if [[ ${OS} == Ubuntu ]];then
 	apt-get update 
