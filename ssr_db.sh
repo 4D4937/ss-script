@@ -43,6 +43,7 @@ fi
 if [[ ${OS} == Ubuntu ]];then
 	apt-get update 
 	apt-get install build-essential wget -y
+	apt-get install openssl
 	apt-get install python-dev -y
 	apt-get install python-pip -y
 	apt-get install git -y
@@ -50,12 +51,14 @@ fi
 if [[ ${OS} == CentOS ]];then
 	yum install update
 	yum install python-setuptools -y && easy_install pip -y
+	yum install openssl
 	yum install git -y
 	yum install python-dev -y
     	yum groupinstall "Development Tools" -y
 fi
 if [[ ${OS} == Debian ]];then
 	apt-get update
+	apt-get install openssl
 	apt-get install python-pip -y
 	apt-get install git -y
 	apt-get install python-dev -y
