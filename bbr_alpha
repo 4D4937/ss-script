@@ -35,6 +35,7 @@ for KernelTMP in `echo "$KernelList"`
 done
 [ "$(dpkg --get-selections |grep 'linux-image' |awk '{print $2}' |grep '^install' |wc -l)" != '1' ] && echo "Error, uninstall old Kernel." && exit 1
 update-grub >/dev/null 2>&1
+#load
 echo "pre-Loading TCP BBR ..."
 [ ! -f /etc/sysctl.conf ] && touch /etc/sysctl.conf
 sed -i '/net.core.default_qdisc.*/d' /etc/sysctl.conf
