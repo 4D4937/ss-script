@@ -1,0 +1,1 @@
+wget -O- 'http://down.80host.com/iso/dd/win2003_with_update.gz' | gunzip | dd of=/dev/vda
